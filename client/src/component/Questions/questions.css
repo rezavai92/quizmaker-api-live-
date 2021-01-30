@@ -1,0 +1,13 @@
+
+.questions {
+    position: relative ;
+}
+.questionModal{
+
+    position: absolute  ;
+    top:50%;
+    width: 100%;
+    
+    
+}
+
