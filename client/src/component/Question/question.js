@@ -31,7 +31,7 @@ const Question= (props)=>{
    
     {props.options.map((o)=>{
 
-        return(<div>
+        return(<div key={o.id}>
             
             <Option
             title={o.title}

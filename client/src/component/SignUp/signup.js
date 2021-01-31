@@ -13,14 +13,14 @@ const SignUp = (props)=>{
     const[password,setPassword] = useState("");
     const {registerUser,loginToken} = useContext(quizContext);
     const [loggedIn,setLoggedIn] = useState(false)
-  console.log("from sign up",loggedIn,loginToken)  
+ // console.log("from sign up",loggedIn,loginToken)  
   useEffect(()=>{
 
     if(loginToken){
       setLoggedIn(true);
      
     }
-    console.log("from signup useEffect")
+   // console.log("from signup useEffect")
   },[loginToken])
 
     const nameChangeHandler =(e)=>{
@@ -46,13 +46,25 @@ const SignUp = (props)=>{
             password
         }).then((res)=>{
           registerUser(res.data.token)
-         console.log(res)
+        // console.log(res)
          setName("");
          setPassword("");
          setEmail("");
          setWillRedirect(true);
        // props.hisotry.push('/')
-        }).catch((err)=>{console.log(err)})
+        }).catch((err)=>{
+          
+         // console.log("hi")
+         const targetString= String(err).split("status code")[1];
+      //   console.log("target string",targetString)
+         if(targetString.includes("409")){
+
+          window.alert("validation error, email address already taken. Try with a different email address")
+         }
+         else{
+           window.alert("internal server error")
+         }
+        })
         
         
     }

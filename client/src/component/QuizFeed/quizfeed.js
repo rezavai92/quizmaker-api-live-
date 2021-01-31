@@ -10,13 +10,13 @@ const QuizFeed = ()=>{
 
     useEffect(()=>{
 
-        console.log("from quiz feed")
+        //console.log("from quiz feed")
         const getQuiz = async ()=>{
 
             try{
 
                 const quizContent = await axios.get('/quiz');
-                console.log("quiz content ",quizContent);
+               // console.log("quiz content ",quizContent);
                 setQuizzes(quizContent.data);
 
             }

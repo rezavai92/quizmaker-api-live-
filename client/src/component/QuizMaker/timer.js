@@ -11,7 +11,7 @@ useEffect(()=>{
 
     setMin(Number(props.duration)-1)
       const counter  = setInterval(()=>{
-         console.log("i am running");
+     //    console.log("i am running");
 
          let newMin=min;
          setMin(newMin--)

@@ -74,7 +74,7 @@ const Login = ()=>{
             setRedirectError(false);
         }
         catch(err){
-            console.log(err)
+        //    console.log(err)
             setRedirectHome(false)
             setRedirectError(true)
             

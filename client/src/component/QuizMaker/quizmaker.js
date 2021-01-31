@@ -37,6 +37,7 @@ const QuizMaker = ()=>{
 
     //console.log(pathsep)
    const id = pathsep[2] ;
+   console.log("quiz id is ",path)
     useEffect(()=>{
 
         const getQuiz = async ()=>{
@@ -46,7 +47,7 @@ const QuizMaker = ()=>{
                 const quizContent = await axios.get(`/quiz/${id}`);
 
                 setQuiz(quizContent.data)
-                console.log("quiz content ",quizContent);
+              //  console.log("quiz content ",quizContent);
             }
 
             catch(error){
@@ -126,7 +127,7 @@ const QuizMaker = ()=>{
           const res= await axios.post(`/quiz/evaluation/${id}`,{answerSheet})
           setQuizSubmissionSpins(false)
         
-          console.log(res.data);
+         // console.log(res.data);
           setObtainedMarks(res.data.marksObtained);
           setTotalMarks(res.data.total);
           setAnswerSheet([]);
@@ -145,7 +146,7 @@ const QuizMaker = ()=>{
 
      },1000)
     }
-    console.log("answers sheets",answerSheet);
+  //  console.log("answers sheets",answerSheet);
 
 
 

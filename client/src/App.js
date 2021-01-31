@@ -25,12 +25,13 @@ return (
 <ContextProvider>
 <BrowserRouter>   
 <Navigation />
-        <Route path="/" exact  component={Index} /> 
-        <Route path="/quiz/:id" exact component ={QuizMaker} />
+       
+        <Route path="/takequiz/:id" exact component ={QuizMaker} />
         <Route path="/signup" exact component={SignUp} />
         <Route path="/login" exact component={Login} />                  
         <Route path ="/answerquiz" exact component = {QuizFeed} />
         <Route path='/makequiz' exact component={Questions}></Route>
+        <Route path="/" exact  component={Index} /> 
        
   </BrowserRouter>
 </ContextProvider>

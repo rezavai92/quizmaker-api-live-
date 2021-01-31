@@ -64,7 +64,7 @@ const Questions= ()=>{
       const postData = async ()=>{
 
         try{
-            console.log("questions",questions)
+     //       console.log("questions",questions)
           const res=  await axios.post('/quiz',{
 
            
@@ -77,7 +77,7 @@ const Questions= ()=>{
 
             xAuthToken:loginToken
           }} );
-          console.log("from questions.js,created quiz ",res);
+  //        console.log("from questions.js,created quiz ",res);
           setQuizTitle("")
           setQuestions([])
           setDuration(null)
@@ -86,7 +86,7 @@ const Questions= ()=>{
         }
         catch(error){
 
-            console.log(error)
+          //  console.log(error)
         }
     }
 

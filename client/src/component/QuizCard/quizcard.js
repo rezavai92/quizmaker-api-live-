@@ -15,7 +15,7 @@ const QuizCard = (props)=>{
     </Card.Text>
     <Button variant="primary"  >
 
-        <Link to={`/quiz/${props.quizId}`} style={{color:"white"}} > 
+        <Link to={`/takequiz/${props.quizId}`} style={{color:"white"}} > 
         Start
         </Link>
     </Button>

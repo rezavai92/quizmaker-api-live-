@@ -123,7 +123,7 @@ async (req,res)=>{
     
     if(validatingUser){
     
-      return res.status(401).json({"msg":"email already taken"})
+      return res.status(409).json({"msg":"email already taken"})
     }
     
     
