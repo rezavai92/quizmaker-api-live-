@@ -13,7 +13,7 @@ app.use(bp.urlencoded({extended:true}))
 app.use('/quiz',quiz)
 app.use('/user',user)
 app.use('/auth',auth)
-const port = 5000||process.env.PORT;
+const port = process.env.PORT ||5000;
 
 
 
