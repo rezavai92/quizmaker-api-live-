@@ -130,7 +130,7 @@ animation={false}>
     {loginToken?
     <div>
 
-<Button onClick={createQuestion}  variant="info" style={{width:"100%" , marginBottom:"2%"}} >{questions.length>0? "Add Question" : "Start"} </Button>
+<Button onClick={createQuestion}  variant="secondary" style={{width:"100%" , marginBottom:"2%"}} >{questions.length>0? "Add Question" : "Start"} </Button>
 
       <Form onSubmit={(e)=>{quizSubmitHandler(e)  } } >
 

@@ -12,33 +12,33 @@ const Navigation = ()=>{
   const {loginToken,loggedInUserId,confirmLogout} = useContext(quizContext)
   
 return (<div  >
-    <Navbar bg="info" variant="dark"  expand="lg">
-  <Navbar.Brand ><h2> Quizophile</h2> </Navbar.Brand>
+    <Navbar bg="dark" variant="dark"  expand="lg">
+  <Navbar.Brand >Quizophile</Navbar.Brand>
   <Navbar.Toggle aria-controls="basic-navbar-nav" />
   <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="mr-auto">
-      <Nav.Link ><Link to="/" style={{color:"white"}} ><h4>Home</h4></Link></Nav.Link>
+      <Nav.Link ><Link to="/" style={{color:"white"}} >Home</Link></Nav.Link>
       {loginToken?<Nav.Link ><Link to="/makequiz" style={{color:"white"}}  >
-      <h4>Make Quiz</h4>
+      Make Quiz
       </Link></Nav.Link>:null }
       <Nav.Link ><Link to="/answerquiz" style={{color:"white"}}  >
-        <h4>Answer Quiz</h4>  
+        Answer Quiz
       </Link></Nav.Link>
      
     </Nav>
      
      {!loginToken?
      <Nav>
-      <Nav.Link ><Link to="/login" style={{color:"white"}}  ><h4>Log In</h4></Link></Nav.Link> 
-      <Nav.Link  ><Link to="/signup" style={{color:"white"}}  ><h4>Sign Up</h4></Link></Nav.Link>
+      <Nav.Link ><Link to="/login" style={{color:"white"}}  >Log In</Link></Nav.Link> 
+      <Nav.Link  ><Link to="/signup" style={{color:"white"}}  >Sign Up</Link></Nav.Link>
       </Nav> 
       :
       <Nav>
         <Nav.Link><Link to={`/developer/${loggedInUserId}`}
-         style={{color:"white"}}   ><h4>User</h4></Link></Nav.Link>
+         style={{color:"white"}}   >User</Link></Nav.Link>
       <Nav.Link ><Link to="/login" style={{color:"white"}}
       onClick={()=>{confirmLogout()}}
-       ><h4>Log Out </h4></Link></Nav.Link>
+       >Log Out </Link></Nav.Link>
       </Nav>
     }
   </Navbar.Collapse>
