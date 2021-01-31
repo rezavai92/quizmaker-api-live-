@@ -68,8 +68,9 @@ router.get('/:quizId',async(req,res)=>{
 
 try{
 
-        const newQuiz = await Quiz.findById(req.params.quizId);
+        const newQuiz = await Quiz.findById(req.params.quizId).populate("author");
 
+       // console.log(newQuiz);
         if(!newQuiz){
             return res.status(404).json({"msg":"no quiz found"});
         }

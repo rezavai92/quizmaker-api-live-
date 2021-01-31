@@ -125,13 +125,23 @@ const QuizMaker = ()=>{
 
         try{
           const res= await axios.post(`/quiz/evaluation/${id}`,{answerSheet})
+
           setQuizSubmissionSpins(false)
         
          // console.log(res.data);
           setObtainedMarks(res.data.marksObtained);
           setTotalMarks(res.data.total);
+
+          const recordResponse = await axios.post('/record',{
+
+            obtainedMarks:res.data.marksObtained,
+            totalMarks :res.data.total,
+            quiz : id
+          })
+          console.log(recordResponse.data);
           setAnswerSheet([]);
           setWillStartTest(false);
+
           
         }
         catch(error){
@@ -242,7 +252,7 @@ const QuizMaker = ()=>{
                 )}
               </Timer>
               
-                <p style={{color:"#4287f5"}} > <em style={{color:"#24354f"}} >Prepared by : </em> {quiz.author } </p>
+                <p style={{color:"#4287f5"}} > <em style={{color:"#24354f"}} >Prepared by : </em> {quiz.author.name } </p>
             </div>
            {quiz.questions?
              <div className="questionFlex" >
