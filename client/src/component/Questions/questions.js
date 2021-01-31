@@ -21,10 +21,47 @@ const Questions= ()=>{
 
 
    
-   const quizSubmitHandler = ()=>{
+   const quizSubmitHandler = (e)=>{
 
-    
-    const postData = async ()=>{
+    e.preventDefault();
+    // const postData = async ()=>{
+
+    //     try{
+    //         console.log("questions",questions)
+    //       const res=  await axios.post('/quiz',{
+
+           
+    //         title : quizTitle,
+    //         questions : questions,
+    //         duration: quizDuration
+           
+
+    //       },{headers:{
+
+    //         xAuthToken:loginToken
+    //       }} );
+    //       console.log("from questions.js,created quiz ",res);
+    //       setQuizTitle("")
+    //       setQuestions([])
+    //       setDuration("")
+         
+    //     }
+    //     catch(error){
+
+    //         console.log(error)
+    //     }
+    // }
+
+    // if(loginToken){
+    //     postData()
+    // }
+
+    setWillShowModal(true)
+
+   }
+
+   const saveQuizHandler = ()=>{
+      const postData = async ()=>{
 
         try{
             console.log("questions",questions)
@@ -43,9 +80,9 @@ const Questions= ()=>{
           console.log("from questions.js,created quiz ",res);
           setQuizTitle("")
           setQuestions([])
-          setDuration("")
-          setWillShowModal(true)
-
+          setDuration(null)
+          setWillShowModal(false)
+         
         }
         catch(error){
 
@@ -56,7 +93,9 @@ const Questions= ()=>{
     if(loginToken){
         postData()
     }
+
    }
+
 
    return(<div style={{textAlign:"center" , marginTop:"2%",  }} 
    className="container ">
@@ -74,15 +113,15 @@ backdrop="static"
  keyboard={false}
 animation={false}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Save Quiz</Modal.Title>
         </Modal.Header>
-        <Modal.Body>Woohoo, you're reading this text in a modal!</Modal.Body>
+        <Modal.Body>Are you sure ?</Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={closeModal}>
-            Close
+            Back
           </Button>
-          <Button variant="primary"  >
-            Save Changes
+          <Button variant="primary"  onClick={saveQuizHandler}  >
+            Save
           </Button>
         </Modal.Footer>
       </Modal>
@@ -93,55 +132,64 @@ animation={false}>
 
 <Button onClick={createQuestion}  variant="info" style={{width:"100%" , marginBottom:"2%"}} >{questions.length>0? "Add Question" : "Start"} </Button>
 
-{questions.length> 0? 
+      <Form onSubmit={(e)=>{quizSubmitHandler(e)  } } >
 
-        <div>
-            <Form.Group>
-            
-            <Form.Control type="text" size="lg" 
-            style={{width:"100%"}}
-            value={quizTitle} onChange={(e)=>{quizTitleChange(e) }}
-            placeholder="Quiz Title" />
-            
-            </Form.Group>
-            <Form.Group>
-            
-            <Form.Control type="number" 
-            style={{width:"100%"}}
-            min={5}
-            size="sm"
-            value={quizDuration}
-            onChange={quizDurationChange}
-            placeholder="duration" />
-            
-            </Form.Group>
-        </div>
-        
 
-            
+      {questions.length> 0? 
+
+<div>
+  
+    <Form.Group>
+    
+    <Form.Control type="text" size="lg" 
+    style={{width:"100%"}}
+    required={true}
+    value={quizTitle} onChange={(e)=>{quizTitleChange(e) }}
+    placeholder="Quiz Title" />
+    
+    </Form.Group>
+    <Form.Group>
+    
+    <Form.Control type="number" 
+    style={{width:"100%"}}
+    min={5}
+    required={true}
+    size="sm"
+    value={quizDuration}
+    onChange={quizDurationChange}
+    placeholder="duration" />
+    
+    </Form.Group>
+</div>
+
+
+    
 :null}
 
 {
-    questions.map((q,index)=>{
-        return(<div  key={q.id} >
-                <Question
-                
-                questionNo={index+1}
-                textChange={questionTextChange}
-                title ={q.title}
-                options ={q.options}
-                id={q.id}
-                ></Question>
+questions.map((q,index)=>{
+return(<div  key={q.id} >
+        <Question
+        
+        questionNo={index+1}
+        textChange={questionTextChange}
+        title ={q.title}
+        options ={q.options}
+        id={q.id}
+        ></Question>
 
-            </div>)
-    })
-    
+    </div>)
+})
+
 }
 {questions.length>0?
 
-<Button variant="secondary" onClick={quizSubmitHandler}  style={{width:"100%" , marginBottom:"2%"}} >Submit</Button> :null
+<Button variant="secondary" 
+type="submit"
+style={{width:"100%" , marginBottom:"2%"}} >Submit</Button> :null
 
 }
+      </Form>
 
     </div>
     

@@ -21,6 +21,7 @@ const Question= (props)=>{
         <Form.Control type="text" size="lg" 
         style={{width:"100%"}}
         value={props.title} onChange={(e)=>{props.textChange(e,props.id) }}
+        required={true}
         placeholder="Question" />
         
         </Form.Group>

@@ -148,8 +148,12 @@ const confirmLogout = ()=>{
         const replacableIndex= indexes.indexOf(questionId);
 
         oldQuestions.splice(replacableIndex,1);
+        if(oldQuestions.length===0){
+            setQuizTitle("");
+            setDuration(null);
+        }
         setQuestions(oldQuestions);
-  
+        
         
 
     }

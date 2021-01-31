@@ -75,7 +75,9 @@ return(<div className="signup">
 
 
 <Form.Group controlId="formBasicCheckbox">
-  <Form.Control value ={name} name="name" onChange={(e)=>{nameChangeHandler(e)} } 
+  <Form.Control value ={name} name="name" 
+  required={true}
+  onChange={(e)=>{nameChangeHandler(e)} } 
   type="text" placeholder="Enter Name" />
 </Form.Group>
 

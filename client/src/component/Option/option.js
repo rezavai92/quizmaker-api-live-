@@ -21,6 +21,7 @@ const Option = (props)=>{
         
         <Form.Control  type="text" placeholder="Option" 
         value={props.title}
+        required={true}
         style={{width:"100%"}}
         onChange={(e)=>{props.optionTextChange(e, props.questionId, props.id)} }
         />
