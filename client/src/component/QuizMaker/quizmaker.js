@@ -166,7 +166,7 @@ const QuizMaker = ()=>{
                 <meta charSet="utf-8" />
                 <meta property="og:title" content={quiz.title} data-rh="true" />
 
-                <title>{quiz.title}</title>
+                
                 
             </Helmet>
 
