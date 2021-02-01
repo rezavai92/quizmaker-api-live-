@@ -1,6 +1,7 @@
 import React ,{useContext,useState,useEffect} from 'react'
 import {quizContext} from '../../contexts/quizContext'
 import QuizCard from '../QuizCard/quizcard'
+import {Helmet} from 'react-helmet'
 import './quizFeed.css'
 import axios from 'axios'
 const QuizFeed = ()=>{
@@ -34,6 +35,13 @@ const QuizFeed = ()=>{
 
 
     return(<div className="container quizFlex" >
+
+        
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Quizophile</title>
+                
+            </Helmet>
 
 
         {quizzes.map((q)=>{

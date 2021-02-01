@@ -3,6 +3,7 @@ import {quizContext} from '../../contexts/quizContext'
 import {Button,Form,Modal} from 'react-bootstrap'
 import Question from '../Question/question'
 import {Redirect} from 'react-router-dom'
+import {Helmet} from 'react-helmet'
 import axios from 'axios'
 import './questions.css'
 import { faBatteryThreeQuarters } from '@fortawesome/free-solid-svg-icons'
@@ -99,6 +100,13 @@ const Questions= ()=>{
 
    return(<div style={{textAlign:"center" , marginTop:"2%",  }} 
    className="container ">
+
+
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>Quizophile</title>
+                
+            </Helmet>
 
 
 <div style={{

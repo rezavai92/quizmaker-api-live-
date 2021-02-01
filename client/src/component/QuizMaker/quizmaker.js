@@ -4,7 +4,7 @@ import {Modal,Button,Spinner} from 'react-bootstrap'
 import axios from 'axios'
 import './quizMaker.css'
 import { Redirect } from 'react-router-dom'
-
+import {Helmet} from 'react-helmet'
 import Timer from 'react-compound-timer'
 import { CircularProgressbar ,buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
@@ -161,6 +161,12 @@ const QuizMaker = ()=>{
 
 
     return(<div className="container quizmaker " >
+
+            <Helmet>
+                <meta charSet="utf-8" />
+                <title>{quiz.title}</title>
+                
+            </Helmet>
 
         {willTakeBack?<Redirect to="/answerquiz" /> : null}
 
