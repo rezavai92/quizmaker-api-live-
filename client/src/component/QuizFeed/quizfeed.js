@@ -39,7 +39,13 @@ const QuizFeed = ()=>{
         
             <Helmet>
                 <meta charSet="utf-8" />
-                <title>Quizophile</title>
+                <meta property="og:title" content="Quizophile" data-rh="true" />
+                <meta property="og:description" content="Quizophile is an online quiz bulding and sharing platform" data-rh="true" />
+                <meta property="og:image" 
+                content='https://i.imgur.com/mpcNFUA.png'
+                data-rh="true" />
+
+                
                 
             </Helmet>
 

@@ -165,6 +165,10 @@ const QuizMaker = ()=>{
             <Helmet>
                 <meta charSet="utf-8" />
                 <meta property="og:title" content={quiz.title} data-rh="true" />
+                <meta property="og:description" content={quiz.title} data-rh="true" />
+                <meta property="og:image" 
+                content='https://i.imgur.com/mpcNFUA.png'
+                data-rh="true" />
 
                 
                 
