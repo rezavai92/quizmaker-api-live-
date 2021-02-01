@@ -11,3 +11,11 @@
     width: 100%;
 }
 
+.optionButton{
+    cursor : none !important;
+
+    
+}
+.optionRadio{
+    cursor: pointer;
+}

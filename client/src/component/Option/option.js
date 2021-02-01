@@ -31,14 +31,29 @@ const Option = (props)=>{
        
        
       <div className="optionButton" > 
-      <Button  variant="light"  type="button" 
+      <Button  variant="danger"  type="button" 
         onClick={()=>{deleteOptionHandler(props.questionId,props.id)}}> 
-            <FontAwesomeIcon icon={faTrash}/>
+            <FontAwesomeIcon icon={faTrash} color="white"/>
         </Button>  
       </div>
        
       <div>
       <Button className="optionButton" 
+       variant = "info"
+       for={props.qId}
+       
+       >
+           
+          <input type="radio" className="optionRadio" name={props.qId} id={props.qId} onChange={
+
+            ()=>{
+              correctOptionChangeHandler(props.questionId, props.id)
+            }
+          } />
+           
+     </Button>
+
+      {/* <Button className="optionButton" 
        variant ={props.isCorrect?"success":"info"}
        onClick={()=>{
            
@@ -48,7 +63,7 @@ const Option = (props)=>{
            
            <FontAwesomeIcon icon={faCheckCircle} /> 
            
-     </Button>
+     </Button> */}
       </div>
    </div>)
 }

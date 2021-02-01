@@ -37,6 +37,7 @@ const Question= (props)=>{
             title={o.title}
             
             id={o.id}
+            qId={props.id}
             questionId ={props.id}
             optionTextChange={optionTextChangeHandler}
             isCorrect={o.isCorrect}
