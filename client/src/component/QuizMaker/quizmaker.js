@@ -1,5 +1,5 @@
-import React ,{useContext,useState,useEffect} from 'react'
-import {quizContext} from '../../contexts/quizContext'
+import React ,{useState,useEffect} from 'react'
+//import {quizContext} from '../../contexts/quizContext'
 import {Modal,Button,Spinner} from 'react-bootstrap'
 import axios from 'axios'
 import './quizMaker.css'

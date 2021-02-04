@@ -1,5 +1,5 @@
-import React ,{useContext,useState,useEffect} from 'react'
-import {quizContext} from '../../contexts/quizContext'
+import React ,{useState,useEffect} from 'react'
+
 import QuizCard from '../QuizCard/quizcard'
 import {Helmet} from 'react-helmet'
 import './quizFeed.css'

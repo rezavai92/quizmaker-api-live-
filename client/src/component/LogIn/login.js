@@ -2,10 +2,10 @@ import React,{useState,useContext} from 'react'
 import {Redirect} from 'react-router-dom'
 
 import axios from 'axios'
-import Navigation from '../Navigation/Header'
-import {Form,ToggleButton,Button} from 'react-bootstrap'
+
+import {Form,Button} from 'react-bootstrap'
 import {quizContext} from '../../contexts/quizContext'
-import Error from'./error'
+
 import './login.css'
 
 const Login = ()=>{
@@ -13,6 +13,7 @@ const Login = ()=>{
     const [email,setEmail]=useState("");
     const[password,setrPassword] = useState("");
     const [redirectHome,setRedirectHome]=useState(false);
+  //  const [willShowErrorPage,setWillShowErrorPage] = useState(false)
     const [redirectError,setRedirectError]=useState(false);
     //const [selectedLoginType,setSelectedLoginType] = useState("student")
     const {loginToken,confirmLogin} = useContext(quizContext)
@@ -31,7 +32,7 @@ const Login = ()=>{
        return <Redirect to="makquiz" /> 
     }
     else if (redirectError){
-        return <Redirect to="login/error" />
+        return <Redirect to="/login/error" />
     }
       }
       
@@ -115,11 +116,16 @@ const Login = ()=>{
     Log In
   </Button>
 </Form>
-{render()}
-        </div>
+{
+
+render()
+}
+      </div>
     
     : <Redirect  to ="/" />
     }
+
+    
     </div>)
 }
 

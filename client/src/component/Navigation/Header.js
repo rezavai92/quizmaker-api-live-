@@ -1,9 +1,9 @@
 import React,{useContext,useState,useEffect} from 'react'
 import {Link} from 'react-router-dom'
-import axios from 'axios'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import {faPaperclip} from '@fortawesome/free-solid-svg-icons'
-import {Navbar,Nav,NavDropdown,Form,FormControl,Button} from 'react-bootstrap'
+//import axios from 'axios'
+//import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+//import {faPaperclip} from '@fortawesome/free-solid-svg-icons'
+import {Navbar,Nav} from 'react-bootstrap'
 import {quizContext} from '../../contexts/quizContext'
 const Navigation = ()=>{
 

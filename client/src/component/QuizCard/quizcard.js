@@ -6,6 +6,7 @@ const QuizCard = (props)=>{
     
     return(<div className="quizCard" >
 
+
 <Card style={{ width: "100%" ,margin:"3% 0%" }}>
  
   <Card.Body>

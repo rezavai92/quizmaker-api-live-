@@ -1,4 +1,4 @@
-import React, { useState ,useContext, useEffect} from 'react'
+import React, {useContext} from 'react'
 import { Redirect } from 'react-router-dom'
 import {quizContext} from '../../contexts/quizContext'
 import Login from '../LogIn/login'

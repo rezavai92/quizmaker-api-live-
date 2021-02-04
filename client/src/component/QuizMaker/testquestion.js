@@ -1,8 +1,8 @@
-import React ,{useContext,useState,useEffect} from 'react'
-import {quizContext} from '../../contexts/quizContext'
-import {Modal,Button} from 'react-bootstrap'
-import axios from 'axios'
-import { Redirect } from 'react-router-dom'
+import React  from 'react'
+//import {quizContext} from '../../contexts/quizContext'
+//import {Modal,Button} from 'react-bootstrap'
+//import axios from 'axios'
+//import { Redirect } from 'react-router-dom'
 import './testQuestion.css'
 
 const TestQuestion = (props)=>{

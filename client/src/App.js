@@ -5,6 +5,7 @@ import Navigation from './component/Navigation/Header'
 import ContextProvider from './contexts/quizContext'
 import Questions from './component/Questions/questions'
 import QuizMaker from './component/QuizMaker/quizmaker'
+import Error from './component/LogIn/error'
 import {BrowserRouter,Route} from 'react-router-dom'
 import Login from './component/LogIn/login'
 import Index from './component/Index/index'
@@ -28,6 +29,7 @@ return (
        
         <Route path="/takequiz/:id" exact component ={QuizMaker} />
         <Route path="/signup" exact component={SignUp} />
+        <Route path="/login/error" exact component={Error} />     
         <Route path="/login" exact component={Login} />                  
         <Route path ="/answerquiz" exact component = {QuizFeed} />
         <Route path='/makequiz' exact component={Questions}></Route>
