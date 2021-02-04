@@ -8,6 +8,10 @@ const record = require('./Routes/record')
 const app = express()
 
 const db = require('./config/db')
+
+app.use(
+    require("prerender-node").set("prerenderToken", 'Dm1UMxXygiXUDssdlMVJ')
+    );
 app.use(express.json())
 app.use(bp.urlencoded({extended:true}))
 
