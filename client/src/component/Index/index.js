@@ -1,8 +1,8 @@
 import React, {useContext} from 'react'
 import { Redirect } from 'react-router-dom'
 import {quizContext} from '../../contexts/quizContext'
-import Login from '../LogIn/login'
-
+import QuizMaker from '../QuizMaker/quizmaker'
+import Questions from '../Questions/questions'
 const Index = ()=>{
 
      const {loginToken} = useContext(quizContext)
@@ -10,8 +10,8 @@ const Index = ()=>{
     console.log('login token is',loginToken)
     return(<div>
 
-       {loginToken? <Redirect to="/makequiz" /> 
-    : <Login /> 
+       {loginToken? <Questions/> 
+    : <Redirect to="/login" /> 
 
     
     }

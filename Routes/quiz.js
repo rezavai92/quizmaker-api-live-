@@ -62,6 +62,22 @@ router.get('/',async (req,res)=>{
     }
 
 } )
+// get particular quiz by quiz with answer
+
+router.get('/answer/:quizId',async (req,res)=>{
+
+    try{
+        const foundQuiz = await Quiz.findById(req.params.quizId).populate("author");
+
+        res.json(foundQuiz);
+    }
+
+    catch(error){
+
+
+    }
+})
+
 //get particular quiz by quiz id
 
 router.get('/:quizId',async(req,res)=>{
@@ -95,6 +111,8 @@ catch(error){
 
 })
 
+//evaluation 
+
 router.post("/evaluation/:quizId",async(req,res)=>{
 
     try{
@@ -107,7 +125,8 @@ router.post("/evaluation/:quizId",async(req,res)=>{
         }
 
         const answerSheet = [...req.body.answerSheet];
-        //console.log(req.body);
+       // console.log(answerSheet)
+        console.log(req.body);
         let marks=0;
         answerSheet.forEach((a)=>{
           //  console.log("hi ");

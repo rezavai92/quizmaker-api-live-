@@ -1,4 +1,4 @@
-import React ,{useState,useEffect} from 'react'
+import React ,{useState,useEffect,useContext} from 'react'
 //import {quizContext} from '../../contexts/quizContext'
 import {Modal,Button,Spinner} from 'react-bootstrap'
 import axios from 'axios'
@@ -6,6 +6,7 @@ import './quizMaker.css'
 import { Redirect } from 'react-router-dom'
 import {Helmet} from 'react-helmet'
 import Timer from 'react-compound-timer'
+import {quizContext} from '../../contexts/quizContext'
 import { CircularProgressbar ,buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 
@@ -15,9 +16,10 @@ const QuizMaker = ()=>{
    
     const [quiz,setQuiz] = useState({title:"",duration:"",questions:[],author:"" });
     const path =window.location.pathname;
+    const {saveRecord} = useContext(quizContext)
     const [startAgain,setStartAgain] = useState(false)
     const [willShowResultModal, setWillShowResultModal] = useState(false);
-
+    const [willRedirectToDetail,setWillRedirectToDetail] = useState(false)
   const handleShowResultClose = () => {
     
     setWillShowResultModal(false);
@@ -27,6 +29,7 @@ const QuizMaker = ()=>{
 
     const [willShowModal,setWillShowModal] = useState(true)
     const [willStartTest,setWillStartTest] = useState(false)
+    //const[recordId,setRecordId] = useState("")
     const [willTakeBack,setWillTakeBack] =useState(false);
     const[quizSubmissionSpins,setQuizSubmissionSpins]= useState(false);
     const [answerSheet,setAnswerSheet] = useState([]);
@@ -37,7 +40,7 @@ const QuizMaker = ()=>{
 
     //console.log(pathsep)
    const id = pathsep[2] ;
-   console.log("quiz id is ",path)
+   //console.log("quiz id is ",path)
     useEffect(()=>{
 
         const getQuiz = async ()=>{
@@ -124,7 +127,7 @@ const QuizMaker = ()=>{
 
 
         try{
-          const res= await axios.post(`/quiz/evaluation/${id}`,{answerSheet})
+          const res= await axios.post(`/quiz/evaluation/${id}`,{answerSheet })
 
           setQuizSubmissionSpins(false)
         
@@ -134,12 +137,14 @@ const QuizMaker = ()=>{
 
           const recordResponse = await axios.post('/record',{
 
+            answerSheet,
             obtainedMarks:res.data.marksObtained,
             totalMarks :res.data.total,
             quiz : id
           })
           console.log(recordResponse.data);
           setAnswerSheet([]);
+          saveRecord(recordResponse.data.newRecord._id);
           setWillStartTest(false);
 
           
@@ -280,6 +285,8 @@ const QuizMaker = ()=>{
                                 const foundQuestion=  answers.find((a)=>{
                                     return a.question_id===queId;
                                   })
+                                  console.log("hello, found question",foundQuestion)
+
                                   if(foundQuestion!=undefined){
                                    const queIndex= answers.findIndex((a)=>{
                                       return a.question_id===queId;
@@ -288,8 +295,10 @@ const QuizMaker = ()=>{
                                       answers[queIndex]={question_id :queId, selectedOption:selectedOptionId}
                                       
                                     }
+                                    
                                   }
                                   else{
+                                    console.log("hello, found question",foundQuestion)
                                     answers.push({question_id :queId, selectedOption:selectedOptionId})
                                   }
                                   setAnswerSheet(answers);
@@ -358,6 +367,13 @@ const QuizMaker = ()=>{
             }} >
               Try Again
             </Button>
+            <Button variant="success" onClick={()=>{
+
+                setWillRedirectToDetail(true)
+
+            }}  >
+              View Details
+            </Button>
             <Button variant="info" onClick={handleShowResultClose}  >
               Home
             </Button>
@@ -371,7 +387,11 @@ const QuizMaker = ()=>{
 }
 
 
-
+{
+  willRedirectToDetail? 
+  <Redirect to={`/quiz/result/details/${id}`} />
+  :null
+}
 
     </div>)
 

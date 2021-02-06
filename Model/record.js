@@ -8,6 +8,10 @@ const recordSchema = new Schema({
         type: Schema.Types.ObjectId,
         refs:"quizzes"
     },
+    answerSheet:{
+        type:Array,
+        required:true
+    },
 
     obtainedMarks:{
         type : Number,
@@ -39,7 +43,7 @@ const recordSchema = new Schema({
     
 
 
-const Record = mongoose.model("reocrds",recordSchema)
+const Record = mongoose.model("records",recordSchema)
 
 
 module.exports = Record;

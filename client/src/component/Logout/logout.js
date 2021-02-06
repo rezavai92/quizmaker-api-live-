@@ -20,12 +20,12 @@ const Logout = ()=>{
         async function fetch (){
 
             try{
-                axios.get('/auth/logout',{headers:{
+               await axios.get('/auth/logout',{headers:{
                     xAuthToken : String(loginToken)
                 }} )
             //    setTimeout(()=>{setLogginOut(false) },5000)
                 confirmLogout()
-                setWillRedirect(true)
+             //   setWillRedirect(true)
                
             }
             catch(err){
@@ -42,7 +42,7 @@ const Logout = ()=>{
 
 
 
-        {redirect? render(): null}
+        {!loginToken? render(): null}
     </div>)
 
 }

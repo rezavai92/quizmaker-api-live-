@@ -9,13 +9,14 @@ const ContextProvider = (props)=>{
     const [quizTitle,setQuizTitle] = useState("")
     const [questions,setQuestions] = useState([])
     const [duration,setDuration] = useState("")
+    const[record,setRecord] = useState(null)
 
 
 
-    const [token,setToken] =useState("");
+const [token,setToken] =useState("");
 const[loggedInUserId,setLoggedInUserId]=useState(null)
 const[loginToken,setLoginToken] = useState("");
-//console.log("from context")
+console.log("from context")
 
 
 useEffect(()=>{
@@ -29,6 +30,18 @@ const registerUser = (token)=>{
 
 }
 
+// save record id after quiz submission
+
+const saveRecord=(id)=>{
+
+        console.log("record id is",id)
+        setRecord({
+            id: id
+        })
+}
+
+
+//login
 const confirmLogin = (token,loggedInUserId)=>{
 
     setLoginToken(token);
@@ -54,7 +67,7 @@ const confirmLogout = ()=>{
         }
         catch(err){
 
-
+            throw err;
         }
     }
     fetch()
@@ -290,8 +303,10 @@ const confirmLogout = ()=>{
              loggedInUserId, 
              quizDuration : duration,
             loginToken,registerUser,
+            saveRecord,
+            record,
             confirmLogin,confirmLogout,
-         questionTextChange,createOption }} >
+            questionTextChange,createOption }} >
             {props.children}
         </quizContext.Provider>
     </div>)

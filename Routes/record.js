@@ -6,14 +6,32 @@ const Record = require('../Model/record')
 const {validationResult,body} = require('express-validator')
 const router = express.Router()
 
+
+//get result record by id
+
+router.get("/:id" ,async (req,res)=>{
+
+    try{
+       const foundRecord=  await Record.findById(req.params.id);
+       
+       res.json({record:foundRecord})
+    }
+
+    catch(error){
+
+
+    }
+})
+
+// post result record
 router.post("/",async (req,res)=>{
 
 
     try{
 
-        const {obtainedMarks,totalMarks,quiz} =req.body;
+        const {obtainedMarks,totalMarks,quiz,answerSheet} =req.body;
         const record = new Record({
-
+            answerSheet,
             obtainedMarks,
             totalMarks,
             quiz
