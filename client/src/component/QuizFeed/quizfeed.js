@@ -39,9 +39,15 @@ const QuizFeed = ()=>{
 
         async function search(){
             try{
-
-                const response =await axios.get(`/quiz/search/${id}`);
+                if (id!=1)
+                {
+                    const response =await axios.get(`/quiz/search/${id}`);
                 setQuizzes(response.data.searchedQuizes)
+            }
+            else{
+                const response =await axios.get('/quiz');
+                setQuizzes(response.data)
+            }
             }
             catch(error){
 

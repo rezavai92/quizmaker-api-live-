@@ -11,17 +11,19 @@ useEffect(()=>{
 
             const response = await axios.get('/topic/all');
             
-            const existingTopics =[...response.data.topics,topics]
+            const existingTopics =[...response.data.topics]
             console.log("existing topics ",response.data)
         
 
             if(!props.inQuizFeed){
-            setTopics(existingTopics)    
+            setTopics([...existingTopics])    
             props.selectTopicHandler(response.data.topics[0]._id)
             }
             else{
-                existingTopics.unshift({title:"select topic",_id:null});
-                setTopics(existingTopics)
+              existingTopics.unshift({title:"all",_id:1});
+
+                setTopics([...existingTopics])
+                props.selectTopicHandler(1)
             }
 
         }   
