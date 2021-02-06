@@ -12,7 +12,8 @@ const QuizCard = (props)=>{
   <Card.Body>
     <Card.Title>{props.title}</Card.Title>
     <Card.Text>
-      duration : {props.duration} min
+      <p>duration : {props.duration} min </p>
+      <p>      topic :{props.topic.title}</p>
     </Card.Text>
     <Button variant="primary"  >
 

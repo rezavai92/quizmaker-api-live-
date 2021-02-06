@@ -11,6 +11,10 @@ const quizSchema = new Schema({
     title :{
         type:String,
         required:true,
+    },
+    topic : {
+        type : Schema.Types.ObjectId,
+        ref : 'topics'
     }
     ,
     date :{

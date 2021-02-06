@@ -5,6 +5,7 @@ import Question from '../Question/question'
 import {Redirect} from 'react-router-dom'
 import {Helmet} from 'react-helmet'
 import axios from 'axios'
+import TopicDropdown from './dropdown'
 import './questions.css'
 import { faBatteryThreeQuarters } from '@fortawesome/free-solid-svg-icons'
 const Questions= ()=>{
@@ -12,7 +13,7 @@ const Questions= ()=>{
 
    const{quizDuration,setQuizTitle,setQuestions,setDuration ,quizTitle,quizDurationChange,questionTextChange,quizTitleChange ,questions,createQuestion,loginToken } = useContext(quizContext);
    const [willShowModal,setWillShowModal] = useState(false)
-   
+   const [selectedTopicId,setSelectedTopicId] = useState(null)   
 
    const closeModal = ()=>{
 
@@ -71,7 +72,8 @@ const Questions= ()=>{
            
             title : quizTitle,
             questions : questions,
-            duration: quizDuration
+            duration: quizDuration,
+            topic:selectedTopicId
            
 
           },{headers:{
@@ -157,6 +159,13 @@ animation={false}>
     
     </Form.Group>
     <Form.Group>
+
+    <TopicDropdown 
+    inQuizFeed={false}
+    selectTopicHandler={(id)=>{
+        
+      setSelectedTopicId(id)
+    }} />  
     
     <Form.Control type="number" 
     style={{width:"100%"}}
@@ -184,6 +193,7 @@ return(<div  key={q.id} >
         title ={q.title}
         options ={q.options}
         id={q.id}
+        
         ></Question>
 
     </div>)

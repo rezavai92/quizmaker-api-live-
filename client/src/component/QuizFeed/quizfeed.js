@@ -1,13 +1,15 @@
 import React ,{useState,useEffect} from 'react'
 
 import QuizCard from '../QuizCard/quizcard'
+import TopicDropdown from '../Questions/dropdown'
 import {Helmet} from 'react-helmet'
 import './quizFeed.css'
 import axios from 'axios'
 const QuizFeed = ()=>{
 
    
-    const [quizzes,setQuizzes] = useState([{title:"",questions:[],duration:""}]);
+    const [quizzes,setQuizzes] = useState([]);
+    const[topicId,setTopicId] = useState()
 
     useEffect(()=>{
 
@@ -17,7 +19,7 @@ const QuizFeed = ()=>{
             try{
 
                 const quizContent = await axios.get('/quiz');
-               // console.log("quiz content ",quizContent);
+                console.log("quiz content ",quizContent);
                 setQuizzes(quizContent.data);
 
             }
@@ -33,6 +35,22 @@ const QuizFeed = ()=>{
         getQuiz();
     },[])
 
+    const searchByTopicHandler=(id)=>{
+
+        async function search(){
+            try{
+
+                const response =await axios.get(`/quiz/search/${id}`);
+                setQuizzes(response.data.searchedQuizes)
+            }
+            catch(error){
+
+                    throw error;
+            }
+        }
+
+        search();
+    }
 
     return(<div className="container quizFlex" >
 
@@ -48,7 +66,15 @@ const QuizFeed = ()=>{
                 
                 
             </Helmet>
+            <div style={{textAlign:"center",marginTop:"1%"}} >
+            <TopicDropdown 
+            inQuizFeed= {true}
+            selectTopicHandler={(id)=>{
 
+                searchByTopicHandler(id)
+            }} />
+
+            </div>
 
         {quizzes.map((q)=>{
 
@@ -57,7 +83,7 @@ const QuizFeed = ()=>{
                 duration ={q.duration}
                 quizId ={q._id}
                 key={q._id}
-                
+                topic={q.topic}
             >
 
             </QuizCard>)

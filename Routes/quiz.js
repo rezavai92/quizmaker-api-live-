@@ -21,6 +21,7 @@ if(!errors.isEmpty()){
 const quiz = new Quiz({
     author : req.user.id,
     title : req.body.title,
+    topic:req.body.topic,
     questions:req.body.questions,
     duration : req.body.duration,
 
@@ -42,6 +43,25 @@ catch(error){
 //console.log(req.body);
 
 })
+
+// get quizzes by topic id 
+
+router.get('/search/:topicId',async(req,res)=>{
+
+    try{
+        const found=await Quiz.find({topic:req.params.topicId}).populate("topic").select("title _id author duration topic")
+        res.json({searchedQuizes:found});
+    
+    
+    }
+
+    catch(error){
+
+        res.status(500).json({msg:"internal server error"})
+    }
+})
+
+
 // get all quizzes
 
 
@@ -49,7 +69,7 @@ router.get('/',async (req,res)=>{
 
     try{
 
-        const allQuizzes = await Quiz.find().select("title _id  author duration");
+        const allQuizzes = await Quiz.find().populate("topic").select("title _id  author duration topic");
 
         res.json(allQuizzes);
 

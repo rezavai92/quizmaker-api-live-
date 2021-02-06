@@ -3,6 +3,7 @@ const bp = require('body-parser')
 const quiz =require('./Routes/quiz')
 const user = require('./Routes/user')
 const path = require('path')
+const topic = require('./Routes/topic')
 const auth = require('./Routes/auth')
 const record = require('./Routes/record')
 const app = express()
@@ -10,7 +11,7 @@ const app = express()
 const db = require('./config/db')
 
 app.use(
-    require("prerender-node").set("prerenderToken", 'Dm1UMxXygiXUDssdlMVJ')
+require("prerender-node").set("prerenderToken", 'Dm1UMxXygiXUDssdlMVJ')
     );
 app.use(express.json())
 app.use(bp.urlencoded({extended:true}))
@@ -18,6 +19,7 @@ app.use(bp.urlencoded({extended:true}))
 app.use('/quiz',quiz)
 app.use('/user',user)
 app.use('/auth',auth)
+app.use('/topic',topic)
 app.use('/record',record)
 const port = process.env.PORT ||5000;
 
