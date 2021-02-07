@@ -275,7 +275,8 @@ const QuizMaker = ()=>{
              <div className="questionFlex" >
              {quiz.questions.map((question,index)=>{
                  return(<div key={question._id} > 
-                             <TestQuestion questionNo={index+1} 
+                             <TestQuestion  
+                                 questionNo={index+1} 
                                  options ={question.options}
                                  title ={question.title}
                                  questionId={question._id}

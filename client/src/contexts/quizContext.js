@@ -100,7 +100,10 @@ const confirmLogout = ()=>{
             if(o.id===optionId){
 
 
-                o.isCorrect=!o.isCorrect;
+                o.isCorrect=true;
+            }
+            else{
+                o.isCorrect=false;
             }
         })
 
