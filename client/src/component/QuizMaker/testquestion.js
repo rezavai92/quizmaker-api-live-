@@ -18,15 +18,20 @@ return(<div>
 
         {props.options.map((option,index)=>{
 
-            return(<div key={option._id}>
-                    <input type="radio" 
+            return(<div key={option._id} className="test-option-flex" >
+                   <div>
+                   <input type="radio" 
                     onChange={()=>{props.selectedOptionHandler(option._id)  } }
                     id={option._id}
                     
                     value={option._id} name={props.questionId}  />     
-                    <label for={option._id}  > {" "+option.title}
+                    </div>
+                    <div  > 
+                    <label for={option._id} >
+                    {" "+option.title}
+                    </label>
                     
-                     </label>              
+                     </div>              
                 </div>)
         })}
     </div>

@@ -1,5 +1,5 @@
 import React,{useState,useContext} from 'react'
-import {Redirect} from 'react-router-dom'
+import {Link,Redirect} from 'react-router-dom'
 
 import axios from 'axios'
 
@@ -109,12 +109,16 @@ const Login = ()=>{
   </Form.Group>
   
   
+  
  
 
 
   <Button variant="primary" type="submit">
     Log In
   </Button>
+  <Link to="/password/reset" style={ {color:"red" }} >
+    Forgot Password ?
+  </Link>
 </Form>
 {
 

@@ -71,7 +71,7 @@ const SignUp = (props)=>{
 
     const render = ()=>{
 
-      return <Redirect to="login" />
+      return <Redirect to="/login" />
     }
 return(<div className="signup">
 
