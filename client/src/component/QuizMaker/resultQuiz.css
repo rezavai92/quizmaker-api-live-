@@ -1,0 +1,6 @@
+.result-option-flex{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}

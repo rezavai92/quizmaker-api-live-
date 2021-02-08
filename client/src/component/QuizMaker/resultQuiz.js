@@ -5,7 +5,7 @@ import React  from 'react'
 //import axios from 'axios'
 //import { Redirect } from 'react-router-dom'
 import './testQuestion.css'
-
+import './resultQuiz.css'
 const ResultQuiz = (props)=>{
 
    // const [bgColor,setBgColor] = useState("white"
@@ -47,19 +47,23 @@ return(<div>
                 verdict="You selected this!"
             }
 
-            return(<div key={option._id}>
-                    <input type="radio" 
+            return(<div className="result-option-flex" key={option._id}>
+                   <div> 
+                   <input type="radio" 
                      disabled={true}
                      value={props.correctAnswer}
                      id={option._id}
                     
                     value={option._id} name={props.questionId}  />     
-                    <label for={option._id} 
+                    </div>
+                   <div>
+                   <label for={option._id} 
                     
                     
                     > {" "+option.title}
                                 <span style={{color:bg}} >{" "+verdict}</span>
-                     </label>              
+                     </label>       
+                    </div>       
                 </div>)
         })}
     </div>
