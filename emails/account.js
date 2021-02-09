@@ -1,4 +1,6 @@
-const sgMail = require('@sendgrid/mail')
+require('dotenv').config()
+const sgMail = require('@sendgrid/mail');
+
 sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 
 const generateCode =()=>{
@@ -7,20 +9,28 @@ const generateCode =()=>{
 }
 
 const code = generateCode();
-  const verifyUserEmail = (recipient,name)=>{
+  const resetPassword = (recipient,name,token)=>{
 
+    const verLink =`https://nr-quizmaker.herokuapp.com/reset/password/${token}`;
     const msg = {
         to: recipient, // Change to your recipient
         from: 'nijhumreza52@gmail.com', // Change to your verified sender
-        subject: 'Email Verification - Quizophile Team',
-        text: `Hello ${name}! Thank you for joining Quizophile.Before we get started, we need you to verify your  email to make sure we got it right.Your  verification code is ${code}.`
-        
+        subject: 'Password Reset - Quizophile Team',
+       html :`<h1> Quizophile</h1> <p>Hello ${name}! We are glad to have you back.Please click on the to link to reset your password.
+          the link will redirect to a new page in our site where you can reset your password.
+       </p> <a href= ${verLink}>${verLink} </a> `
+      
       }
 
-     return  sgMail.send(msg);
+       sgMail.send(msg).then(()=>{
+        console.log("sent")
+
+       }).catch((error)=>{
+            console.log(error)
+       });
      
 
     
   }
 
-  module.exports={verifyUserEmail}
+  module.exports={resetPassword}

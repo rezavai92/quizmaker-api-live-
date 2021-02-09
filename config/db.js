@@ -4,6 +4,7 @@ mongoose.connect(config.get("connectionString"),{
 
 useUnifiedTopology:true,
 useNewUrlParser:true,
+useFindAndModify:false,
 useCreateIndex:true,
 }).then((res)=>{
 

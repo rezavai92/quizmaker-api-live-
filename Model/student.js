@@ -21,8 +21,15 @@ const studentSchema = new Schema({
         required:true,
         minlength:5
         
+    },
+    passwordResetToken:{
+        type:String,
+        
     }
-    
+    ,
+    passwordResetTokenExpiration:{
+        type:Date
+    }
     } )
     
     

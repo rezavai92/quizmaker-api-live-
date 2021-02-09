@@ -1,16 +1,23 @@
+require('dotenv').config()
 const { ObjectId } = require("bson")
 const sgMail = require('@sendgrid/mail');
+
 //const { response } = require('express');
-sgMail.setApiKey(process.env.SENDGRID_API_KEY)
+
 const express =require("express")
-const emailAuth = require('../middlewares/verifyEmail')
+const resetAuth = require('../middlewares/resetAuth')
 const {body,validationResult} =require('express-validator')
 const router = express.Router()
+const {resetPassword} = require('../emails/account')
 const Student =require('../Model/student')
 const Admin = require('../Model/admin')
 const jwt = require('jsonwebtoken')
 
 const config = require('config')
+
+
+//console.log(process.env.SENDGRID_API_KEY)
+sgMail.setApiKey(process.env.SENDGRID_API_KEY)
 const bcrypt = require('bcryptjs')
 //const { body, validationResult } = require("express-validator")
 
@@ -26,7 +33,7 @@ body("password").isLength({min:5})
 async (req,res)=>{
 
 
-    const errors = validationResult(req);
+    const errors = validationResult(req); 
 
     if(!errors.isEmpty()){
 
@@ -139,7 +146,9 @@ async (req,res)=>{
 
       name,
       email,
-      password
+      password,
+      passwordResetToken:null,
+      passwordResetTokenExpiration:null
     });
     let s="";
 
@@ -194,6 +203,98 @@ async (req,res)=>{
 }
 
 )
+// reset password in action 
+
+router.post('/reset/password',[resetAuth],async(req,res)=>{
+
+  const {token,password} = req.body;
+
+  try{
+
+    const foundUser= await Student.findOne({email:req.email});
+  //  console.log(foundUser)
+  if(!foundUser){
+    return res.status(401).json({msg:"no account with this mail"});
+
+
+  }
+  if(foundUser.passwordResetToken!=token){
+    return res.status(401).json({msg:"invalid token"});
+  }
+
+  let salt =bcrypt.genSaltSync(10);
+
+    let updatedPassword = bcrypt.hashSync(password,salt);
+
+  const updatedUser = await Student.findByIdAndUpdate(foundUser._id,{passwordResetToken:null,passwordResetTokenExpiration:null,password:updatedPassword},{new:true})
+ 
+ console.log("updated user",updatedUser)
+  res.json({msg:"password updated successfully"});  
+}
+
+  catch(error){
+
+
+  }
+  
+  
+  
+})
+
+
+/// reset password request
+router.post('/password/reset/checkEmail',async(req,res)=>{
+
+
+
+  const {email} = req.body;
+  
+  const foundUser = await Student.findOne({email:email});
+
+  if(!foundUser){
+
+    return res.status(401).json({"msg":"no account with this email"})
+  }
+  console.log(foundUser)
+
+  const payload = {
+  
+
+      email : foundUser.email
+  
+
+  }
+  jwt.sign(payload,config.get("jwtResetPasswordSecret"),{expiresIn:"1h"},
+  (err,token)=>{
+      if(err){
+        console.log(err)
+        return res.status(500).json({msg:"internal server error"})
+      }
+
+      
+
+   Student.findOneAndUpdate({email:email},{passwordResetToken:token,passwordResetTokenExpiration:Date.now()+3600})
+   .then((response)=>{
+   // console.log(res);
+    resetPassword(email,foundUser.name,token);
+    res.json({msg:"a link is sent to the given email,user is required to verify this"});
+
+    
+   }).catch((error)=>{
+
+    return res.status(500).json({msg:"internal server error"})
+   })
+     
+    
+   
+      
+  }
+)
+
+
+  
+
+})
 
 router.post('/register/verify',async (req,res)=>{
 

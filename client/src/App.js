@@ -7,6 +7,8 @@ import Questions from './component/Questions/questions'
 import QuizMaker from './component/QuizMaker/quizmaker'
 import Error from './component/LogIn/error'
 import {BrowserRouter,Route} from 'react-router-dom'
+import FinalReset from './component/LogIn/finalreset'
+import ResetPassword from './component/LogIn/reset'
 import Login from './component/LogIn/login'
 import Index from './component/Index/index'
 import QuizFeed from './component/QuizFeed/quizfeed'
@@ -27,9 +29,10 @@ return (
 <ContextProvider>
 <BrowserRouter>   
 <Navigation />
+        <Route path="/reset/password/:token" exact component ={FinalReset} />
         <Route path="/quiz/result/details/:id" exact component={ViewDetail}  />
         <Route path="/takequiz/:id" exact component ={QuizMaker} />
-      
+        <Route path="/password/reset" exact component ={ResetPassword} />
         <Route path="/signup" exact component={SignUp} />
         <Route path="/login/error" exact component={Error} />     
         <Route path="/login" exact component={Login} />                  
