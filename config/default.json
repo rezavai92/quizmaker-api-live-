@@ -1,5 +1,0 @@
-{
-    "jwtSecret" :"quizapiwebtoken",
-     "jwtResetPasswordSecret":"resetToken",
-    "connectionString":"mongodb+srv://reza52:reza52@cluster0.wnbaz.mongodb.net/<QuizDB>?retryWrites=true&w=majority"
-}
