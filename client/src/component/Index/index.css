@@ -1,0 +1,52 @@
+.index-card-flex{
+
+
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    transform: translate(0%,210px);
+    
+    grid-gap : 5px;
+
+}
+
+
+.make-quiz-card{
+
+    color: white;
+    font-weight: 400;
+    font-size: larger;
+    text-align: center;
+    background-color: #6432a8;
+    box-shadow: 1px 2px 10px 1px black ;
+    padding : 30px 0px;
+
+    box-sizing: border-box;
+    cursor: pointer;
+
+
+
+}
+
+.answer-quiz-card{
+
+    text-align: center;
+    background-color: magenta;
+    box-shadow: 1px 2px 10px 1px black ;
+
+    color: white;
+    font-weight: 400;
+    padding : 30px 0px;
+    font-size: larger;
+    box-sizing: border-box;
+    cursor: pointer;
+
+    
+}
+
+@media  screen and (max-width : 560px) {
+    
+    .index-card-flex{
+        grid-template-columns: repeat(1,1fr);
+        grid-template-rows: repeat(2,1fr);
+    }
+}

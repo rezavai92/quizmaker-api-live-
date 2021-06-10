@@ -14,7 +14,7 @@ import Index from './component/Index/index'
 import QuizFeed from './component/QuizFeed/quizfeed'
 import SignUp from './component/SignUp/signup'
 import ViewDetail from './component/QuizMaker/viewdetails'
-//import './App.css';
+import './App.css';
 
 const App=()=>  {
 
