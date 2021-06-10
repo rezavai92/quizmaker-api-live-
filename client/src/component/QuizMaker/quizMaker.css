@@ -1,10 +1,16 @@
 .quizHeader{
 
     text-align: center;
+    color : black;
 }
 .submit-spinner{
 
     position: absolute;
     top:50%;
     left: 45%;
+}
+
+.quizMaker{
+
+    color : white;
 }

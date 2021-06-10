@@ -82,7 +82,7 @@ const ViewDetail = ()=>{
 
     },[])
 
-    return(<div className="container" style={{marginTop:"1%"}} >
+    return(<div className="container quizMaker" style={{marginTop:"1%"}} >
 
             <h2 style={{textAlign:"center" , color:"green"}} > Details!</h2>
             {

@@ -34,8 +34,8 @@ return (<div  >
       </Nav> 
       :
       <Nav>
-        <Nav.Link><Link to={`/user/${loggedInUserId}`}
-         style={{color:"white"}}   >User</Link></Nav.Link>
+        {/* <Nav.Link>  <Link to={`/user/${loggedInUserId}`}
+         style={{color:"white"}}   >User</Link></Nav.Link> */}
       <Nav.Link ><Link to="/login" style={{color:"white"}}
       onClick={()=>{confirmLogout()}}
        >Log Out </Link></Nav.Link>

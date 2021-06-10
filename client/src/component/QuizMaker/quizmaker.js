@@ -165,7 +165,7 @@ const QuizMaker = ()=>{
 
 
 
-    return(<div className="container quizmaker " >
+    return(<div className="container quizMaker " >
 
             <Helmet>
                 <meta charSet="utf-8" />
@@ -233,7 +233,7 @@ const QuizMaker = ()=>{
     {willStartTest?
         <div>
             <div className ="quizHeader">
-                <h2> <span>Title : </span> {quiz.title}</h2>
+                <h2 style={{color :"white"}} > <span  >Title : </span> {quiz.title}</h2>
               
                 <Timer
                 initialTime={quiz.duration*60*1000}
@@ -269,7 +269,7 @@ const QuizMaker = ()=>{
                 )}
               </Timer>
               
-                <p style={{color:"#4287f5"}} > <em style={{color:"#24354f"}} >Prepared by : </em> {quiz.author.name } </p>
+                <p style={{color:"#4287f5"}} > <em style={{color:"white"}} >Prepared by : </em> {quiz.author.name } </p>
             </div>
            {quiz.questions?
              <div className="questionFlex" >
